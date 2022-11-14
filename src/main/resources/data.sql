@@ -3,7 +3,7 @@ INSERT INTO RBUILDING(id, name, address,zipCode) VALUES(1, 'Building2', 'Address
 
 
 INSERT INTO RROOM(id, name, building_Id, current_temperature, target_temperature) VALUES(-10, 'Room1', 1, 22.3, 20.0);
-INSERT INTO RROOM(id, building_Id, name) VALUES(-9, -10, 'Room2');
+INSERT INTO RROOM(id, building_Id, name, current_temperature, target_temperature) VALUES(-9, -10, 'Room2', -22.3, -20.0);
 
 
 INSERT INTO HEATER(id, heater_status, name, power, room_id) VALUES(-10, 'ON', 'Heater1', 2000, -10);
