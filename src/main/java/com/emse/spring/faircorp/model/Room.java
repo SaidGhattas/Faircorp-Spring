@@ -37,12 +37,12 @@ public class Room {
     private Double current_temperature;
     private Double target_temperature;
 
-    @OneToMany(mappedBy = "room")
+    @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
     private List<Heater> heaterList ;
 
     @ManyToOne(optional = false)
     private Building building;
-    @OneToMany(mappedBy = "room")
+    @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
     private List<Window> windowList ;
 
     public Long getId() {

@@ -1,6 +1,7 @@
 package com.emse.spring.faircorp.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "RBUILDING")
@@ -14,7 +15,7 @@ public class Building {
 
     private String address;
     private String city;
-    private Integer zipCode;
+    private Integer zipcode;
 
     public Building() {
     }
@@ -26,7 +27,7 @@ public class Building {
         this.name = name;
         this.address = address;
         this.city = city;
-        this.zipCode = zipCode;
+        this.zipcode = zipcode;
     }
 
     public Building(String name, String address) {
@@ -67,10 +68,21 @@ public class Building {
     }
 
     public Integer getZipCode() {
-        return zipCode;
+        return zipcode;
     }
 
-    public void setZipCode(Integer zipCode) {
-        this.zipCode = zipCode;
+    public void setZipCode(Integer zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    @OneToMany(mappedBy = "building",cascade = CascadeType.REMOVE)
+    private List<Room> rooms;
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
     }
 }

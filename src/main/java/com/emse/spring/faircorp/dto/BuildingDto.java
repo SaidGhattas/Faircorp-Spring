@@ -7,14 +7,14 @@ public class BuildingDto {
     private String name;
     private String address;
     private String city;
-    private Integer zipCode;
+    private Integer zipcode;
 
     public BuildingDto(Building building) {
         this.id = building.getId();
         this.name = building.getName();
         this.address = building.getAddress();
         this.city = building.getCity();
-        this.zipCode = building.getZipCode();
+        this.zipcode = building.getZipCode();
 
         }
     public Long getId() {
@@ -50,10 +50,10 @@ public class BuildingDto {
     }
 
     public Integer getZipCode() {
-        return zipCode;
+        return zipcode;
     }
 
     public void setZipCode(Integer zipCode) {
-        this.zipCode = zipCode;
+        this.zipcode = zipCode;
     }
 }

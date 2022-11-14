@@ -49,7 +49,7 @@ public class SpringSecurityConfig {
     @Bean
     public SecurityFilterChain filterChainMain(HttpSecurity http) throws Exception {
         return http
-                .authorizeRequests(authorize -> authorize.anyRequest().permitAll() )
+                .authorizeRequests(authorize -> authorize.anyRequest().hasAnyRole(ROLE_USER,ROLE_ADMIN) )
                 .formLogin(withDefaults())
                 .httpBasic(withDefaults())
                 .build();
