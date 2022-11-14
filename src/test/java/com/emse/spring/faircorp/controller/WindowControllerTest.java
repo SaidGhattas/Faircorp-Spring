@@ -3,6 +3,7 @@ package com.emse.spring.faircorp.controller;
 import com.emse.spring.faircorp.dao.RoomDao;
 import com.emse.spring.faircorp.dao.WindowDao;
 import com.emse.spring.faircorp.dto.WindowDto;
+import com.emse.spring.faircorp.model.Building;
 import com.emse.spring.faircorp.model.Room;
 import com.emse.spring.faircorp.model.Window;
 import com.emse.spring.faircorp.model.WindowStatus;
@@ -128,7 +129,7 @@ class WindowControllerTest {
     }
 
     private Window createWindow(String name) {
-        Room room = new Room(1, "S1");
+        Room room = new Room(new Building(), "S1");
         return new Window(room, name, WindowStatus.OPEN);
     }
 

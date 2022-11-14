@@ -3,6 +3,7 @@ package com.emse.spring.faircorp;
 import com.emse.spring.faircorp.controller.WindowController;
 import com.emse.spring.faircorp.dao.RoomDao;
 import com.emse.spring.faircorp.dao.WindowDao;
+import com.emse.spring.faircorp.model.Building;
 import com.emse.spring.faircorp.model.Room;
 import com.emse.spring.faircorp.model.Window;
 import com.emse.spring.faircorp.model.WindowStatus;
@@ -54,7 +55,7 @@ public class Security {
                 .andExpect(jsonPath("$.windowStatus").value("CLOSED"));
     }
     private Window createWindow(String s) {
-        Room room= new Room(0,"test");
+        Room room= new Room(new Building(),"test");
         Window window = new Window(room,s,WindowStatus.OPEN) ;
         return window;
     }

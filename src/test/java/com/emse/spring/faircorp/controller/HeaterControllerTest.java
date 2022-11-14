@@ -3,6 +3,7 @@ package com.emse.spring.faircorp.controller;
 
 import com.emse.spring.faircorp.dao.HeaterDao;
 import com.emse.spring.faircorp.dao.RoomDao;
+import com.emse.spring.faircorp.model.Building;
 import com.emse.spring.faircorp.model.Heater;
 import com.emse.spring.faircorp.model.HeaterStatus;
 import com.emse.spring.faircorp.model.Room;
@@ -40,8 +41,8 @@ public class HeaterControllerTest {
     @Test
     public void shouldLoadAllHeaters () throws Exception {
         given(heaterDao.findAll()).willReturn(Arrays.asList(
-                new Heater("Heater 1", 10L, new Room(1, "Room 1"),HeaterStatus.ON),
-                new Heater( "Heater 2", 10L, new Room(1, "Room 1"), HeaterStatus.ON)
+                new Heater("Heater 1", 10L, new Room(new Building(), "Room 1"),HeaterStatus.ON),
+                new Heater( "Heater 2", 10L, new Room(new Building(), "Room 1"), HeaterStatus.ON)
         ));
         mockMvc.perform(get("/api/heaters"))
                 .andExpect(jsonPath("[*].name").value(Arrays.asList("Heater 1", "Heater 2")));
@@ -49,7 +50,7 @@ public class HeaterControllerTest {
 
     @Test
     public void shouldLoadAHeater () throws Exception {
-        given(heaterDao.findById(1L)).willReturn(Optional.of(new Heater("Heater 1", 10L, new Room(1, "Room 1"),HeaterStatus.ON)));
+        given(heaterDao.findById(1L)).willReturn(Optional.of(new Heater("Heater 1", 10L, new Room(new Building(), "Room 1"),HeaterStatus.ON)));
         mockMvc.perform(get("/api/heaters/1"))
                 .andExpect(jsonPath("name").value("Heater 1"));
     }
@@ -62,7 +63,7 @@ public class HeaterControllerTest {
     }
     @Test
     public void shouldCreateAHeater () throws Exception {
-        given(roomDao.findById(1L)).willReturn(Optional.of(new Room(1, "Room 1")));
+        given(roomDao.findById(1L)).willReturn(Optional.of(new Room(new Building(), "Room 1")));
         mockMvc.perform(post("/api/heaters")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"name\": \"Heater 1\", \"power\": 10, \"roomId\": 1, \"status\": \"ON\"}"))
